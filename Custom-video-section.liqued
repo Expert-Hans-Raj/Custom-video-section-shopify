@@ -1,0 +1,168 @@
+<div class="page-width home-video-sec">  
+  <h2 class="video-section-heading title">{{section.settings.video_title}}</h2>
+  <div class="main-video-section">    
+	
+    <div class="video-section-left">
+      <div class="video_slide_section">
+
+         <div class="video-placeholder-img">
+
+           <div class="index-video-play index-video-play-icon">
+             <div class="icon-inner customplay-video">
+               <img src="{{section.settings.play_button | img_url}}" class="video-play"> 
+             </div>
+           </div>
+           
+           <img class="video-banner" src="{{section.settings.cover_imgl | img_url: '597x346'}}">
+        </div>
+
+        <div class="video_section_slide" style="display:none;">
+
+          <video width="100%" loop  id="index-video">
+            <source src="{{section.settings.video_link}}" type="video/mp4">
+            <source src="{{section.settings.video_link}}" type="video/ogg">
+          </video>
+        </div>
+      </div>
+    </div>
+
+    <div class="video-section-right">
+      <div class="video_slide_section">
+
+         <div class="video-placeholder-img-right">
+
+           <div class="index-video-play index-video-play-icon-right">
+             <div class="icon-inner customplay-video">
+               <img src="{{section.settings.play_button_right | img_url}}" class="video-play"> 
+             </div>
+           </div>
+
+           <img class="video-banner" src="{{section.settings.cover_imgr | img_url: '597x346'}}">
+        </div>
+
+        <div class="video_section_slide-right" style="display:none;">
+
+          <video width="100%" loop  id="index-video-right">
+            <source src="{{section.settings.video_link2}}" type="video/mp4">
+            <source src="{{section.settings.video_link2}}" type="video/ogg">
+          </video>
+        </div>
+      </div>
+    </div>
+    <div class="video-see-more-btn">
+      <a class="comman-btn" href="{{sections.settings.view_link}}">{{section.settings.button_text}}</a>
+    </div>
+  </div>
+</div>
+
+
+<script>
+  
+  $(document).ready(function(){
+    $('.index-video-play-icon').click(function(){
+    $('.video-placeholder-img').hide();
+    $('.video_section_slide').show();
+      $('#index-video').trigger('play'); 
+    });
+  
+   $('.video_section_slide').click(function(){
+     $('#index-video').trigger('pause');
+     $(this).hide();
+     $('.video-placeholder-img').show();
+    })
+
+  });
+  
+  
+  $(document).ready(function(){
+    $('.index-video-play-icon-right').click(function(){
+    $('.video-placeholder-img-right').hide();
+    $('.video_section_slide-right').show();
+      $('#index-video-right').trigger('play'); 
+    });
+  
+   $('.video_section_slide-right').click(function(){
+     $('#index-video-right').trigger('pause');
+     $(this).hide();
+     $('.video-placeholder-img-right').show();
+    })
+
+  });
+   
+</script>
+
+
+{% schema %}
+{
+"name": "Custom Video",
+"settings": [
+{
+  "type": "html",
+  "id": "video_title",
+  "label": "Heading"
+},
+{
+  "type": "header",
+  "content": "Left Video"
+},
+{
+  "type": "image_picker",
+  "id": "play_button",
+  "label": "Play Button"
+},
+{
+  "type": "image_picker",
+  "id": "cover_imgl",
+  "label": "Cover Image"
+},
+{
+  "type": "url",
+  "id": "video_link",
+  "label": "Video link"
+
+},
+{
+  "type": "header",
+  "content": "Right Video"
+},
+{
+  "type": "image_picker",
+  "id": "play_button_right",
+  "label": "Play Button"
+},
+{
+  "type": "image_picker",
+  "id": "cover_imgr",
+  "label": "Cover Image"
+},
+{
+  "type": "url",
+  "id": "video_link2",
+  "label": "Video link 2"
+
+},
+{
+  "type": "url",
+  "id": "view_link",
+  "label": "View Link"
+},
+{
+  "type": "text",
+  "id": "button_text",
+  "label": "Button Text"
+}
+],
+  "presets":[
+  {
+  "name":"Custom Video",
+  "category":"Video"
+}
+]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
